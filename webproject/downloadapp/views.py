@@ -41,16 +41,19 @@ def download(request):
         # 선택한 확장자
         
         extension_selected = request.POST.getlist('extension')
+        keyword = request.POST.get('keyword')
+
         dataset_selected_list = []
         for extension in extension_selected:
             dataset_selected_dict = {}
             data_selected_list = []
 
-            for data in download_db.loc[download_db['extension'] == extension, ['filename','referrer','url']].values:
+            for data in download_db.loc[(download_db['extension'] == extension) & (download_db['filename'].str.contains(keyword)), ['filename','referrer','url', 'danger_type']].values:
                 data_selected_dict = {}
                 data_selected_dict['filename'] = data[0]
                 data_selected_dict['referrer'] = data[1]
                 data_selected_dict['url'] = data[2]
+                data_selected_dict['danger_type'] = data[3]
                 data_selected_list.append(data_selected_dict)
 
             dataset_selected_dict['extension'] = extension

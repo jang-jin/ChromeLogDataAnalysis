@@ -34,10 +34,17 @@
 										<div class="row gtr-uniform">
 											{% for extension in extension_top %}
 												<div class="col-6 col-12-small">
-													<input type="checkbox" id="{{extension}}" name="extension" value="{{extension}}" >
+													<input type="checkbox" id="{{extension}}" class="checkbox" name="extension" value="{{extension}}" />
 													<label for="{{extension}}">{{extension}}</label>
 												</div>
 											{% endfor %}
+											<div class="col-6 col-12-xsmall">
+												<input type="text" name="keyword" id="demo-name" value="" placeholder="Keyword" />
+											</div>
+											<div class="col-6 col-12-xsmall">
+												<input type="checkbox" id="all_select" />
+												<label for="all_select">모두 선택</label>
+											</div>
 											<div class="col-12">
 												<ul class="actions">
 													<li><input type="submit" value="검색하기" class="primary" /></li>
@@ -46,21 +53,30 @@
 											</div>
 										</div>
 									</form>
+									<hr />
 									{% for dataset in dataset_selected %}
 										<h1>{{dataset.extension}}</h1>
 										<div class="table-wrapper">
 											<table>
 												<thead>
 													<tr>
-														<th>일자</th>
-														<th>이름</th>
+														<th>위험도</th>
+														<th>파일 이름</th>
 														<th></th>
 													</tr>
 												</thead>
 												<tbody>
 													{% for data in dataset.dataset %}
 														<tr>
-															<td>시간</td>
+															<td>
+																{% if data.danger_type < 4 %}
+																	<img src="/static/images/별0.jpg" style="width:30px;" />
+																{% elif data.danger_type < 6 %}
+																	<img src="/static/images/별4.jpg" style="width:30px;" />
+																{% else %}
+																	<img src="/static/images/별6.jpg" style="width:30px;" />
+																{% endif %}
+															</td>
 															<td><a href="{{data.url}}">{{data.filename}}</a></td>
 															<td><a href="{{data.referrer}}">참고 링크</a></td>
 														</tr>
@@ -114,5 +130,22 @@
 			<script src="/static/js/util.js"></script>
 			<script src="/static/js/main.js"></script>
 
+			<script>
+			$('#all_select').click(function(){
+				if ($("input:checkbox[id='all_select']").prop("checked")){
+					$("input[type=checkbox]").prop("checked", true);
+				} else {
+					$("input[type=checkbox]").prop("checked", false);
+				}
+			})
+
+			$('.checkbox').click(function(){
+				if ($("input:checkbox[class='checkbox']:checked").length==10){
+					$("input:checkbox[id='all_select']").prop("checked", true);
+				} else {
+					$("input:checkbox[id='all_select']").prop("checked", false);
+				}
+			})
+			</script>
 	</body>
 </html>
