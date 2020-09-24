@@ -42,48 +42,42 @@
 						<!-- Introduction -->
 							<section id="intro" class="main">
 								<div class="spotlight">
-									<div class="content">
-										<header class="major">
-											<h2>Ipsum sed adipiscing</h2>
-										</header>
-										<p>Sed lorem ipsum dolor sit amet nullam consequat feugiat consequat magna
-										adipiscing magna etiam amet veroeros. Lorem ipsum dolor tempus sit cursus.
-										Tempus nisl et nullam lorem ipsum dolor sit amet aliquam.</p>
-										<ul class="actions">
-											<li><a href={% url 'generic' %} class="button">Learn More</a></li>
-										</ul>
-									</div>
-									<span class="image"><img src="/static/images/pic01.jpg" alt="" /></span>
+									<a href="{% url 'index' %}" ><span class="image"><img src="/static/images/pic01.jpg" alt="" /></span></a>
 								</div>
 							</section>
 
 						<!-- First Section -->
 							<section id="first" class="main special">
 								<header class="major">
-									<h2>Magna veroeros</h2>
+									<h2>넌 뭘 검색했을까?</h2>
 								</header>
 								<ul class="features">
 									<li>
-										<span class="icon solid major style1 fa-code"></span>
-										<h3>Ipsum consequat</h3>
-										<p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p>
+										<div class="table-wrapper">
+											<table>
+												<thead>
+													<tr>
+														<th>rank</th>
+														<th>keyword</th>
+														<th>frequency</th>
+													</tr>
+												</thead>
+												<tbody>
+													{% for keyword in top9 %}
+														<tr>
+															<td>{{keyword.rank}}</td>
+															<td>{{keyword.word}}</td>
+															<td>{{keyword.count}}</td>
+														</tr>
+													{% endfor %}
+												</tbody>
+											</table>
+										</div>
 									</li>
 									<li>
-										<span class="icon major style3 fa-copy"></span>
-										<h3>Amed sed feugiat</h3>
-										<p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p>
-									</li>
-									<li>
-										<span class="icon major style5 fa-gem"></span>
-										<h3>Dolor nullam</h3>
-										<p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p>
+										<div class="col-4"><span class="image fit"><img src="/static/images/wordcloud_keyword.png" alt="" /></span></div>
 									</li>
 								</ul>
-								<footer class="major">
-									<ul class="actions special">
-										<li><a href={% url 'generic' %} class="button">Learn More</a></li>
-									</ul>
-								</footer>
 							</section>
 
 						<!-- Second Section -->
