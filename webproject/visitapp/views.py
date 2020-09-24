@@ -6,10 +6,11 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Create your views here.
 def visit(request):
-    # 경로
+
     homepath = os.path.expanduser("~")
     abs_chrome_path = os.path.join(homepath, 'AppData', 'Local', 'Google', 'Chrome', 'User Data', 'Default', 'History')
     # 파일복사
@@ -58,7 +59,7 @@ def visit(request):
         'url_list': url_list,
         'title' : title_list
     }
-    print(context['favicon_url'])
+    #print(context['favicon_url'])
 
 
     count=0
@@ -71,15 +72,29 @@ def visit(request):
         visit_count.append(row[2])
         count+=1
 
+    df = pd.DataFrame([title, visit_count], index=['title','visit_count']).T
+
+    plt.rc('font', family='NanumGothic')
     plt.figure(figsize=(10,6))
-    plt.subplot(221)
-    plt.xticks(rotation=90)
-    plt.bar(title, visit_count)
+    #plt.subplot(221)
+    #plt.xticks(rotation=90)
+    sns.barplot(data=df, x='visit_count', y='title')
 
-    plt.subplot(222)
-    plt.pie(visit_count, labels=title)
-    plt.grid()
+    plt.savefig('./static/images/bar.png',dpi=300, bbox_inches='tight')
 
-    plt.savefig('./static/images/plot.png',dpi=300, bbox_inches='tight')
+    plt.figure(figsize=(10,6))
+    #plt.subplot(222)
+    #plt.pie(visit_count, labels=title)
+    group_explodes = (0.1, 0, 0, 0, 0)
+    plt.pie(visit_count, 
+            explode=group_explodes, 
+            labels=title, 
+            autopct='%1.2f%%', # second decimal place
+            shadow=True, 
+            startangle=90,
+            textprops={'fontsize': 12}) # text font size
+    plt.axis('equal') #  equal length of X and Y axis
+
+    plt.savefig('./static/images/pie.png',dpi=300, bbox_inches='tight')
 
     return render(request, 'visitapp/visit.html', context) 
