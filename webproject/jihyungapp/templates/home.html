@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        {% for row in favicon_url %}
+            <div>
+                <img src={{row}} width=50 height=50>
+            </div>
+        {% endfor %}
+        {% for row in url_list %}
+            <div>
+                <a href={{row}}>{{row}}</a>
+            </div>
+        {% endfor %}
+        <div>
+            <img src='static/image.png' width=500 height=500>
+        </div>
+    </div>
+</body>
+</html>
