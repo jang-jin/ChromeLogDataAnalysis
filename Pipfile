@@ -15,6 +15,7 @@ numpy = "*"
 matplotlib = "*"
 krwordrank = "*"
 kiwipiepy = "*"
+seaborn = "*"
 
 [requires]
 python_version = "3.8"
