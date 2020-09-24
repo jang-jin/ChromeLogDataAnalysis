@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from mainapp import views as mainviews
+from downloadapp import views as downloadviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', mainviews.index, name='index'),
+    path('generic', mainviews.generic, name='generic'),
+    path('elements', mainviews.elements, name='elements'),
+    path('download', downloadviews.download, name='download'),
 ]
