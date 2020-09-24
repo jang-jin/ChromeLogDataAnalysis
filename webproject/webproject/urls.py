@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from mainapp import views as mainviews
 from downloadapp import views as downloadviews
+from visitapp import views as visitviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +25,5 @@ urlpatterns = [
     path('generic', mainviews.generic, name='generic'),
     path('elements', mainviews.elements, name='elements'),
     path('download', downloadviews.download, name='download'),
+    path('visit', visitviews.visit, name='visit'),
 ]

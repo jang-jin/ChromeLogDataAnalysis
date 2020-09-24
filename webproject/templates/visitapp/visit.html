@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>방문기록 분석</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/static/css/main.css" />
+		<noscript><link rel="stylesheet" href="/static/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1>방문기록 분석</h1>
+						<p>가장 많이 방문한 URL 상위 5개</p>
+					</header>
+
+				<!-- Main -->
+					<div id="main">
+						<!-- Content -->
+							<section id="content" class="main">
+                                <div>
+
+                                    <div class="table-wrapper">
+											<table>
+												<thead>
+													<tr>
+														<th>1</th>
+														<th>2</th>
+                                                        <th>3</th>
+                                                        <th>4</th>
+                                                        <th>5</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+                                                        {% for row in favicon_url %}
+														    <td><img src={{row}} width=50 height=50></td>
+                                                        {% endfor %}
+													</tr>
+                                                    <tr>
+                                                        {% for row in title %}
+                                                            <td>{{row}}</td>
+                                                        {% endfor %}
+                                                    </tr>
+                                                    <tr>
+                                                        {% for row in url_list %}
+                                                            <td><a href={{row}}>[링크]</a></td>
+                                                        {% endfor %}
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                </div>
+
+                                <div>
+                                    <img src='static/images/plot.png' width=1000 height=800>
+                                </div>
+
+							</section>
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<h2>MY CLog</h2>
+							<p>Simple is Best.</p>
+						</section>
+						<section>
+							<dl class="alt">
+								<dt>Team</dt>
+								<dd>유승민 김관형 홍지형 이상훈 장진</dd>
+								<dt>Git</dt>
+								<dd><ul class="icons">
+								<li><a href="https://github.com/jang-jin/ChromeLogDataAnalysisSite" class="icon brands fa-github alt"><span class="label">GitHub</span></a></li>
+							</ul></dd>
+							</dl>
+						</section>
+						<p class="copyright">&copy; MY CLog.</p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="/static/js/jquery.min.js"></script>
+			<script src="/static/js/jquery.scrollex.min.js"></script>
+			<script src="/static/js/jquery.scrolly.min.js"></script>
+			<script src="/static/js/browser.min.js"></script>
+			<script src="/static/js/breakpoints.min.js"></script>
+			<script src="/static/js/util.js"></script>
+			<script src="/static/js/main.js"></script>
+
+	</body>
+</html> 
