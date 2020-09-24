@@ -18,9 +18,10 @@ def visit(request):
     data_list = []
     con = sqlite3.connect(abs_chrome_path+"_copy")
     cursor = con.cursor()
-    # cursor.execute("SELECT * FROM urls")
-    for row in cursor.execute("SELECT * FROM urls"):
+    cursor.execute("SELECT * FROM urls order by visit_count ASC")
+    for row in cursor.execute("SELECT * FROM urls order by visit_count DESC limit 5"):
         data_list.append(row)
+    data_list
     df = pd.DataFrame(data_list, columns=['id', 'url', 'title', 'visit_count', 'typed_count', 'last_visit_time', 'hidden'])
     # print(df)
     df = df.loc[:,['url', 'title', 'visit_count']]
@@ -31,7 +32,7 @@ def visit(request):
     favi_list=[]
     url_list=[]
     title_list=[]
-    print('<favicon_url | url | title>')
+    # print('<favicon_url | url | title>')
     for name, row in df_visit_count.iterrows():
         if count==5:
             break
