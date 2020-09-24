@@ -70,8 +70,16 @@ def visit(request):
         title.append(row[1])
         visit_count.append(row[2])
         count+=1
+    
+    plt.figure(figsize=(10,6))
+    plt.subplot(221)
     plt.xticks(rotation=90)
     plt.bar(title, visit_count)
-    plt.savefig('./static/images/barplot.png',dpi=300, bbox_inches='tight')
+
+    plt.subplot(222)
+    plt.pie(visit_count, labels=title)
+    plt.grid()
+
+    plt.savefig('./static/images/plot.png',dpi=300, bbox_inches='tight')
     
     return render(request, 'visitapp/visit.html', context)
