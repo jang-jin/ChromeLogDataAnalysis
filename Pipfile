@@ -9,6 +9,12 @@ verify_ssl = true
 django = "*"
 pysqlite3 = "*"
 pandas = "*"
+konlpy = "*"
+wordcloud = "*"
+numpy = "*"
+matplotlib = "*"
+krwordrank = "*"
+kiwipiepy = "*"
 
 [requires]
 python_version = "3.8"
